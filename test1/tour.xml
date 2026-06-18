@@ -1,4 +1,4 @@
-﻿<krpano>
+<krpano>
 	<if check="get(mode) !== 'editor'">
 		<include url="skin/vtourskin.xml"/>
 		<skin_settings maps="false"
@@ -59,8 +59,8 @@
 
 
 	<include url="d5.xml"/>
-	<include url="%VIEWER%/gen.xml"/>
-	<include url="%VIEWER%/user.xml%$curtime%"/>
+	<include url="gen.xml"/>
+	<include url="user.xml%$curtime%"/>
 
 	<action name="onloadedxml" type="Javascript" autorun="onstart"><![CDATA[
       if(window.krpano.get('dollhouseEnable') != 'true'){
