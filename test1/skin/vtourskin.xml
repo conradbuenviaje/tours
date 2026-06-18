@@ -2,7 +2,6 @@
 
 	<!-- krpano 1.21 - Virtual Tour Skin -->
 
-
 	<!-- skin settings (can be overridden in the tour.xml) -->
 	<skin_settings maps="false"
 	               maps_type="google"
@@ -59,7 +58,6 @@
 	               design_text_txtshadow="1 1 4 0x000000 1.0"
 	               />
 
-
 	<!-- save the url path of this xml file (the url value will be adjusted during xml parsing) -->
 	<vtourskinxmlpath url="./" />
 
@@ -91,10 +89,8 @@
 	         moving="move"
 	         />
 
-
 	<!-- ensure stagescale 2x for mobile devices (regardless if mobilescale is 0.5 or 1.0) -->
 	<krpano stagescale="calc:stagescale * 2" if="stagescale LT 1.0" devices="mobile" />
-
 
 	<!-- VR support - https://krpano.com -->
 	<include url="%SWFPATH%/plugins/webvr.xml" />
@@ -224,4 +220,7 @@
 	<hotspot name="skin_webvr_next_scene" keep="true" style="skin_base|skin_webvr_menu_style" crop="64|64|64|64" ox="+88" onover="tween(scale,0.750);" onout="tween(scale,0.625);" vr_timeout="750" onclick="skin_nextscene_loop(+1);" visible="false" devices="webgl" />
 	
 	<!-- floating/following VR hotspots -->
-	<action name="skin_webvr_menu_following" type="Javascript"><![CDATA[var hs1 = krpano.get("hotspot(skin_webvr_prev_scene)");var hs2 = krpano.get("hotspot(skin_webvr_next_scene)");if(!hs1.hovering && !hs2.hovering){var f = 0.01;	// following speed factorvar h = krpano.view.hlookat;var v = krpano.view.vlookat;var hsh = hs1.ath;var hsv = hs1.atv;h   = (h  -(h|0))   + (((h|0)  +360180)%360) - 180.0;v   = (v  -(v|0))   + (((v|0)  +360180)%360) - 180.0;hsh = (hsh-(hsh|0)) + (((hsh|0)+360180)%360) - 180.0;var dh = h - hsh;dh += (dh > 180) ? -360 : (dh < -180) ? 360 : 0hsh += dhf;var a = Math.abs(v - hsv) / 90.0;a = 1.0 * Math.max(1.0 - 2.0Math.sqrt(a), 0);v = v + 55.0 - v1.5;hsv = hsv(1.0 - f) + v*f;hs1.ath = hs2.ath = hsh;hs1.atv = hs2.atv = hsv;hs1.alpha = hs2.alpha = a;}]]>if(isvalue(caller.linkedscene) AND skin_settings.tooltips_hotspots,copy(caller.tooltip, scene(get(caller.linkedscene)).title);caller.loadstyle(skin_tooltips););if(isvalue(caller.linkedscene),copy(hs_linkedscene, caller.linkedscene);if(caller.linkedscene_lookat, txtsplit(caller.linkedscene_lookat, ',', hs_lookat_h, hs_lookat_v, hs_lookat_fov); );set(caller.enabled, false);skin_hidetooltips();if(caller.use3dtransition,skin_scene3dtransition(get(hs_linkedscene),get(caller.linkedscene_hoffset));,tween(caller.depth|caller.alpha|caller.oy|caller.rx, 4000|0.0|-50|-60, 0.5, default,skin_loadscene(get(hs_linkedscene), get(skin_settings.loadscene_blend));if(hs_lookat_h !== null, skin_lookat(get(hs_lookat_h), get(hs_lookat_v), get(hs_lookat_fov)); );););skin_updatescroll(););motionblur = 0.5;transitiondelay = 0.0;transitiontime = 0.5;transitiontweentype = "easeoutquad";if(caller AND caller.ishotspot,if(caller.depth == 0,set3dtransition("image", caller.tx,caller.ty,caller.tz, motionblur, hlookatoffset, transitiondelay, transitiontime, transitiontweentype);,caller.getcenter(h,v);if(v GT -50 AND v LT +50 AND caller.depth GT 120, set(v,0));set3dtransition("sphere", h,v,(min(caller.depth,1000)), motionblur, hlookatoffset, transitiondelay, transitiontime, transitiontweentype););,if(image.depthmap.url,set3dtransition("image", 0,0,0, motionblur, hlookatoffset, transitiondelay, transitiontime, transitiontweentype);););loadscene(get(scenename), null, MERGE, BLEND(get(transitiontime),get(transitiontweentype)));<maptypecontrol visible="true" align="righttop" x="5" y="5" buttonalign="v" scale.mobile="1.5"
+	<action name="skin_webvr_menu_following" type="Javascript"><![CDATA[
+		var hs1 = krpano.get("hotspot[skin_webvr_prev_scene]");
+
+		var hs2 = krpano.get("hotspot(skin_webvr_next_scene)");if(!hs1.hovering && !hs2.hovering){var f = 0.01;	// following speed factorvar h = krpano.view.hlookat;var v = krpano.view.vlookat;var hsh = hs1.ath;var hsv = hs1.atv;h   = (h  -(h|0))   + (((h|0)  +360180)%360) - 180.0;v   = (v  -(v|0))   + (((v|0)  +360180)%360) - 180.0;hsh = (hsh-(hsh|0)) + (((hsh|0)+360180)%360) - 180.0;var dh = h - hsh;dh += (dh > 180) ? -360 : (dh < -180) ? 360 : 0hsh += dhf;var a = Math.abs(v - hsv) / 90.0;a = 1.0 * Math.max(1.0 - 2.0Math.sqrt(a), 0);v = v + 55.0 - v1.5;hsv = hsv(1.0 - f) + v*f;hs1.ath = hs2.ath = hsh;hs1.atv = hs2.atv = hsv;hs1.alpha = hs2.alpha = a;}]]>if(isvalue(caller.linkedscene) AND skin_settings.tooltips_hotspots,copy(caller.tooltip, scene(get(caller.linkedscene)).title);caller.loadstyle(skin_tooltips););if(isvalue(caller.linkedscene),copy(hs_linkedscene, caller.linkedscene);if(caller.linkedscene_lookat, txtsplit(caller.linkedscene_lookat, ',', hs_lookat_h, hs_lookat_v, hs_lookat_fov); );set(caller.enabled, false);skin_hidetooltips();if(caller.use3dtransition,skin_scene3dtransition(get(hs_linkedscene),get(caller.linkedscene_hoffset));,tween(caller.depth|caller.alpha|caller.oy|caller.rx, 4000|0.0|-50|-60, 0.5, default,skin_loadscene(get(hs_linkedscene), get(skin_settings.loadscene_blend));if(hs_lookat_h !== null, skin_lookat(get(hs_lookat_h), get(hs_lookat_v), get(hs_lookat_fov)); );););skin_updatescroll(););motionblur = 0.5;transitiondelay = 0.0;transitiontime = 0.5;transitiontweentype = "easeoutquad";if(caller AND caller.ishotspot,if(caller.depth == 0,set3dtransition("image", caller.tx,caller.ty,caller.tz, motionblur, hlookatoffset, transitiondelay, transitiontime, transitiontweentype);,caller.getcenter(h,v);if(v GT -50 AND v LT +50 AND caller.depth GT 120, set(v,0));set3dtransition("sphere", h,v,(min(caller.depth,1000)), motionblur, hlookatoffset, transitiondelay, transitiontime, transitiontweentype););,if(image.depthmap.url,set3dtransition("image", 0,0,0, motionblur, hlookatoffset, transitiondelay, transitiontime, transitiontweentype);););loadscene(get(scenename), null, MERGE, BLEND(get(transitiontime),get(transitiontweentype)));
